@@ -6,8 +6,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const StyledPaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
+display: flex;
+align-items: center;
+margin:unset;
+padding:unset;
+justify-content: center;
+@media only screen and (min-width: 672px) {
+  margin-left: 25%;
+  margin-right: 20%;
+  padding-left: 5%;
+  padding-right: 15%;
+}
 `;
 
 const StyledPaginationControls = styled.div`
@@ -19,6 +28,7 @@ const StyledPaginationControls = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 const PaginationControls = ({setCurrentPage, currentPage, totalPages }) => {
   const prevDisabled = currentPage > 1 ? false : true;
   const nextDisabled = currentPage < totalPages ? false : true;

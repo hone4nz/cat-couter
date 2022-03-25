@@ -12,7 +12,8 @@ const GlobalStyle = createGlobalStyle`
   box-sizing:border-box;
 }
 .main-content {
-  flex-grow:2;
+  height:100%;
+  display:block-flex;
 }
 .main-layout > * {  
   max-width:1344px;
@@ -31,10 +32,23 @@ const GlobalStyle = createGlobalStyle`
 .section-padding {
   padding-top:1rem;
   padding-bottom:1rem;
+  margin-bottom:12rem;
 }
 @media only screen and (min-width: 672px) {
   .half-width{
     max-width:672px;
+  }
+  .main-content {
+    height:100%;
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap:10px 10px;
+  }
+  .section-padding {
+    padding-top:1rem;
+    padding-bottom:1rem;
+    margin-bottom:7rem;
+  
   }
 }
 .left-align {
