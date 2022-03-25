@@ -3,7 +3,7 @@ const Joi = require("joi");
 const router = express.Router();
 const db = require("../db");
 const queryParamValidationMiddleware = require("../middleware/queryParamValidationMiddleware");
-
+const productRepository = require("./product.repositry");
 const queryParamsSchema = Joi.object().keys({
   page: Joi.number().integer().min(1),
   limit: Joi.number().integer().min(1),
