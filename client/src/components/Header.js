@@ -3,25 +3,37 @@ import { NavLink } from "react-router-dom";
 import LoginButton from "./LoginButton";
 
 const StyledNav = styled.nav`
-  width: 100%;
-  background-color: #eeeeee;
-  display: flex;
-  justify-content: space-between;
-
-  .nav-button {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .menu {
-    display: flex;
-  }
-
   .right-links {
-    display: flex;
-
     li {
       list-style-type: none;
+      padding: 20px;
+      text-decoration: none;
+      display: grid;
+      text-align: center;
+    }
+  }
+
+  @media only screen and (min-width: 672px) {
+    width: 100%;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: space-between;
+
+    .nav-button {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .menu {
+      display: flex;
+    }
+
+    .right-links {
+      display: flex;
+
+      li {
+        list-style-type: none;
+      }
     }
   }
 `;
@@ -32,14 +44,25 @@ const StyledLink = styled(NavLink)`
     padding-bottom: 1rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-  }
-  color: black;
-
-  &.active {
-    color: #0ea68c;
-  }
-  &.visited {
+    text-decoration: none;
+    background-color: #eeeeee;
     color: black;
+  }
+
+  @media only screen and (min-width: 672px) {
+    &.nav-item {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    &.active {
+      color: #0ea68c;
+    }
+    &.visited {
+      color: black;
+    }
   }
 `;
 

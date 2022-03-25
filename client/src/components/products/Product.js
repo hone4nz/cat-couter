@@ -1,14 +1,25 @@
 import styled from "styled-components";
 import DiscountBadge from "./DiscountBadge";
 
-const StyledProduct = styled.li`
+const StyledMain = styled.div`
   position: relative;
+  background-color: #eeeeee; 
 `;
-
+const StyledCard = styled.div`
+  border: 1px solid black;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  padding: 5px;
+`;
 const StyledDiscountBadge = styled(DiscountBadge)`
   position: absolute;
   top: 0;
   left: 0;
+  background-color: red;
+  color: white;
+
 `;
 
 const StyledButton = styled.button`
@@ -26,20 +37,23 @@ const Product = ({
   discountValue,
 }) => {
   return (
-    <StyledProduct>
-      <div className="card">
-        <div>
+    <StyledMain>
+     <StyledCard>
           {imageName ? (
             <img
               src={`./img/${imageName}`}
               alt={imageDescription}
               className="product-image"
+              width="100%"
+              height="100%"
             />
           ) : (
             <img
               src="./img/cat-photo-default.jpg"
               alt="Default product cat"
               className="product-image"
+              width="100%"
+              height="100%"
             />
           )}
           {discountValue && discountType && (
@@ -48,13 +62,13 @@ const Product = ({
               discountType={discountType}
             />
           )}
-        </div>
+       
         <h3>{name}</h3>
         <p>Price {price}</p>
         <p data-testid="product-description">{description}</p>
         <StyledButton>Add to Cart</StyledButton>
-      </div>
-    </StyledProduct>
+        </StyledCard>
+    </StyledMain>
   );
 };
 
