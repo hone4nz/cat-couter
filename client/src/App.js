@@ -20,7 +20,10 @@ const App = () => {
     <StyledApp>
       <Header />
       <Routes>
-        <Route exact path="/dashboard" element={<DashboardPage />} />
+      <Route exact path="/dashboard" element={<ProtectedRoute />}>
+          <Route exact path="/dashboard" element={<DashboardPage />} />
+      </Route>
+      
         <Route exact path="/" element={<ProductPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
