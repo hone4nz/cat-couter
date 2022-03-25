@@ -19,32 +19,65 @@ const StyledPaginationControls = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+const PaginationControls = ({setCurrentPage, currentPage, totalPages }) => {
+  const prevDisabled = currentPage > 1 ? false : true;
+  const nextDisabled = currentPage < totalPages ? false : true;
+  const onClickPrev = () => {
+    if (!prevDisabled) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
-const PaginationControls = ({
-  onPrev,
-  onNext,
-  currentPage = null,
-  totalPages = null,
-}) => {
-  return (
+  const onClickNext = () => {
+    if (!nextDisabled) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const pageData = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    let extraClass = "";
+    if (i === currentPage) {
+      extraClass = "active";
+    }
+    pageData[i] = (
+      <a
+        href="!#"
+        key={i}
+        className={extraClass}
+        onClick={(e) => {
+          e.preventDefault();
+
+          setCurrentPage(i);
+        }}
+      >
+        {i}
+      </a>
+    );
+  }
+ return (
     <StyledPaginationContainer>
       <StyledPaginationControls>
         <div>
-          <button aria-label="Previous page" onClick={onPrev}>
+          <button aria-label="Previous page" onClick={onClickPrev}>
             <FontAwesomeIcon icon={faChevronLeft} size="2x" />
           </button>
         </div>
         <span>
-          Page {currentPage} of {totalPages}
+        Page {currentPage} of {totalPages}
         </span>
         <div>
-          <button aria-label="Next page" onClick={onNext}>
+          <button aria-label="Next page" onClick={onClickNext}>
             <FontAwesomeIcon icon={faChevronRight} size="2x" />
           </button>
         </div>
       </StyledPaginationControls>
     </StyledPaginationContainer>
   );
+
+
+
 };
 
 export default PaginationControls;
