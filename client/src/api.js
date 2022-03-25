@@ -1,6 +1,6 @@
 const api = {
-  getProducts: async () =>
-    await fetch(`${process.env.REACT_APP_API_URL}/products`),
+  getProducts: async (currentPage) =>
+    await fetch(`${process.env.REACT_APP_API_URL}/products?page=${currentPage}`),
   getReports: async (accessToken) =>
     await fetch(`${process.env.REACT_APP_API_URL}/reports`, {
       headers: {

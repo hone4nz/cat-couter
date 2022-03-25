@@ -15,9 +15,9 @@ paths:
       tags:
         - products
       parameters:
-        - schema:A
-            type: integer
-            minimum: 1
+        - schema:
+           type: integer
+           minimum: 1
           in: query
           name: limit
           description: The number of products to return
