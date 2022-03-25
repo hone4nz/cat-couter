@@ -9,39 +9,28 @@ const queryParamsSchema = Joi.object().keys({
   limit: Joi.number().integer().min(1),
 });
 
-const getProducts = async () => {
-  try {
-    const result = await db.query(
-      `SELECT
-        p.id,
-        p.name,
-        p.description,
-        p.price,
-        pc.name AS "categoryName",
-        pi.name AS "imageName",
-        pi.description AS "imageDescription"
-      FROM product p
-      LEFT JOIN product_category pc ON p.product_category_id = pc.id
-      LEFT JOIN product_image pi ON p.product_image_id = pi.id
-      ORDER BY
-        p.id
-      `
-    );
-    return result.rows;
-  } catch (error) {
-    throw Error(error);
-  }
-};
 
 router.get(
   "/",
   queryParamValidationMiddleware(queryParamsSchema),
+  errorHandlerMiddleware,
   async (req, res, next) => {
     try {
-      const products = await getProducts();
+      const { limit, page } = req.query;
+      const safeLimit = Boolean(limit) ? parseInt(limit) : 10;
+      const safePage = Boolean(parseInt(page)) ? parseInt(page) : 1;
+      const allProducts = await productRepository.getAllProducts();
+      const products = await productRepository.getPageProducts(
+        safeLimit,
+        safePage
+      );
 
       const responseResults = {
         products,
+        currentPage: safePage,
+        itemsPerPage: safeLimit,
+        totalItems: allProducts.length,
+        totalPages: Math.ceil(allProducts.length / safeLimit),
       };
 
       return res.json(responseResults);
@@ -50,5 +39,7 @@ router.get(
     }
   }
 );
+
+
 
 module.exports = router;
