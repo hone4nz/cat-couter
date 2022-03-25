@@ -5,13 +5,13 @@ import ErrorMessage from "../ErrorMessage";
 import CategoriesReport from "./CategoriesReport";
 import DiscountsReport from "./DiscountReport";
 import { useAuth0 } from "@auth0/auth0-react";
+
 const DashboardPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [categoryReports, setCategoryReport] = useState([]);
   const [discountReports, setDiscountReport] = useState([]);
-  const [product, setProduct] = useState("");
   const { getAccessTokenSilently } = useAuth0();
   useEffect(() => {
     // We use AbortController (https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
@@ -50,7 +50,7 @@ const DashboardPage = () => {
     fetchData();
 
     return () => abortController.abort();
-  }, []);
+  }, [getAccessTokenSilently]);
 
   return (
     <main className="narrow-layout main-content section-padding page-padding">
