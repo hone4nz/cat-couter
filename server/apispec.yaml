@@ -15,7 +15,7 @@ paths:
       tags:
         - products
       parameters:
-        - schema:
+        - schema:A
             type: integer
             minimum: 1
           in: query
@@ -76,6 +76,56 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  categoryReport:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        categoryName:
+                          type: string
+                        totalProducts:
+                          type: number
+                        discountProducts:
+                          type: number
+                      required:
+                        - categoryName
+                        - totalProducts
+                        - discountPrice
+                  discountReport:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        discountType:
+                          type: number
+                        totalProducts:
+                          type: number
+                      required:
+                        - discountType
+                        - totalProducts
+
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
