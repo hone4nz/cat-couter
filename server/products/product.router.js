@@ -4,12 +4,11 @@ const router = express.Router();
 const db = require("../db");
 const queryParamValidationMiddleware = require("../middleware/queryParamValidationMiddleware");
 const errorHandlerMiddleware = require("../middleware/errorHandlerMiddleware");
-const productRepository = require("./product.repositry");
+const productRepository = require("./product.repository");
 const queryParamsSchema = Joi.object().keys({
   page: Joi.number().integer().min(1),
   limit: Joi.number().integer().min(1),
 });
-
 
 router.get(
   "/",
@@ -20,11 +19,8 @@ router.get(
       const { limit, page } = req.query;
       const safeLimit = Boolean(limit) ? parseInt(limit) : 10;
       const safePage = Boolean(parseInt(page)) ? parseInt(page) : 1;
-      const allProducts = await productRepository.getAllProducts();
-      const products = await productRepository.getPageProducts(
-        safeLimit,
-        safePage
-      );
+      const allProducts = await productRepository.getTotalProducts();
+      const products = await productRepository.getProducts(safeLimit, safePage);
 
       const responseResults = {
         products,
@@ -40,7 +36,5 @@ router.get(
     }
   }
 );
-
-
 
 module.exports = router;

@@ -16,8 +16,8 @@ paths:
         - products
       parameters:
         - schema:
-           type: integer
-           minimum: 1
+            type: integer
+            minimum: 1
           in: query
           name: limit
           description: The number of products to return
@@ -86,12 +86,12 @@ paths:
                           type: string
                         totalProducts:
                           type: number
-                        discountProducts:
+                        discountedProducts:
                           type: number
                       required:
                         - categoryName
                         - totalProducts
-                        - discountPrice
+                        - discountedProducts
                   discountReport:
                     type: array
                     items:
