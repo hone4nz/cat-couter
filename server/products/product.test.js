@@ -15,13 +15,13 @@ describe("GIVEN that the GET /products route exist", () => {
   test("WHEN there are products THEN return status 200 and an array of products", async () => {
     const totalProducts = await productRepository.getTotalProducts();
     const defaultLimit = 10;
-
+    const defaultPage = 1;
     const expectedResponseData = {
-      products: await productRepository.getProducts(),
+      products: await productRepository.getProducts(defaultLimit, defaultPage),
       currentPage: 1,
-      totalPages: Math.ceil(parseInt(totalProducts) / defaultLimit),
+      totalPages: Math.ceil(parseInt(totalProducts.length) / defaultLimit),
       itemsPerPage: defaultLimit,
-      totalItems: totalProducts,
+      totalItems: totalProducts.length,
     };
 
     const response = await request(app)
@@ -41,9 +41,9 @@ describe("GIVEN that the GET /products route exist", () => {
     const expectedResponseData = {
       products: [],
       currentPage: page,
-      totalPages: Math.ceil(parseInt(totalProducts) / defaultLimit),
+      totalPages: Math.ceil(parseInt(totalProducts.length) / defaultLimit),
       itemsPerPage: defaultLimit,
-      totalItems: totalProducts,
+      totalItems: totalProducts.length,
     };
 
     const response = await request(app)
@@ -61,11 +61,11 @@ describe("GIVEN that the GET /products route exist", () => {
       const limit = 1;
 
       const expectedResponseData = {
-        products: await productRepository.getProducts(limit, 0),
+        products: await productRepository.getProducts(limit, 1),
         currentPage: 1,
-        totalPages: Math.ceil(parseInt(totalProducts) / limit),
+        totalPages: Math.ceil(parseInt(totalProducts.length) / limit),
         itemsPerPage: limit,
-        totalItems: totalProducts,
+        totalItems: totalProducts.length,
       };
 
       const response = await request(app)
@@ -89,12 +89,37 @@ describe("GIVEN that the GET /products route exist", () => {
   });
 
   describe("WHEN the client sends a request for a specific page of products", () => {
-    test.todo(
-      "WHEN the page query parameter is valid as per the API spec THEN return 200 status code and an array of products"
-    );
+    test("WHEN the page query parameter is valid as per the API spec THEN return 200 status code and an array of products", async () => {
+      const totalProducts = await productRepository.getTotalProducts();
+      const page = 1;
+      const limit = 10;
+      const expectedResponseData = {
+        products: await productRepository.getProducts(limit, page),
+        currentPage: page,
+        totalPages: Math.ceil(parseInt(totalProducts.length) / limit),
+        itemsPerPage: limit,
+        totalItems: totalProducts.length,
+      };
 
-    test.todo(
-      "WHEN the page query parameter is not valid as per the API spec THEN return status 400 and an appropriate error message"
-    );
+      const response = await request(app)
+        .get("/api/products?page=1")
+        .set("Accept", "application/json");
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expectedResponseData);
+      expect(response).toSatisfyApiSpec();
+    });
+
+    test("WHEN the page query parameter is not valid as per the API spec THEN return status 400 and an appropriate error message", async () => {
+      const page = "a";
+
+      const response = await request(app)
+        .get(`/api/products?page=${page}`)
+        .set("Accept", "application/json");
+
+      expect(response.status).toBe(400);
+      expect(response.body.message).toBe('"page" must be a number');
+      expect(response).toSatisfyApiSpec();
+    });
   });
 });

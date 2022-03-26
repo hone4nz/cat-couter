@@ -1,7 +1,7 @@
 const db = require("../db");
 
 module.exports = {
-  getAllProducts: async () => {
+  getTotalProducts: async () => {
     try {
       const result = await db.query(
         `SELECT
@@ -24,7 +24,7 @@ module.exports = {
       throw Error(error);
     }
   },
-  getPageProducts: async (limit, page) => {
+  getProducts: async (limit, page) => {
     try {
       const offset = limit * (page - 1);
       const result = await db.query(
