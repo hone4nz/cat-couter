@@ -3,7 +3,7 @@ import DiscountBadge from "./DiscountBadge";
 
 const StyledMain = styled.div`
   position: relative;
-  background-color: #eeeeee; 
+  background-color: #eeeeee;
 `;
 const StyledCard = styled.div`
   border: 1px solid black;
@@ -19,7 +19,6 @@ const StyledDiscountBadge = styled(DiscountBadge)`
   left: 0;
   background-color: red;
   color: white;
-
 `;
 
 const StyledButton = styled.button`
@@ -38,36 +37,36 @@ const Product = ({
 }) => {
   return (
     <StyledMain>
-     <StyledCard>
-          {imageName ? (
-            <img
-              src={`./img/${imageName}`}
-              alt={imageDescription}
-              className="product-image"
-              width="100%"
-              height="100%"
-            />
-          ) : (
-            <img
-              src="./img/cat-photo-default.jpg"
-              alt="Default product cat"
-              className="product-image"
-              width="100%"
-              height="100%"
-            />
-          )}
-          {discountValue && discountType && (
-            <StyledDiscountBadge
-              discountValue={discountValue}
-              discountType={discountType}
-            />
-          )}
-       
+      <StyledCard role="listitem">
+        {imageName ? (
+          <img
+            src={`./img/${imageName}`}
+            alt={imageDescription}
+            className="product-image"
+            width="100%"
+            height="100%"
+          />
+        ) : (
+          <img
+            src="./img/cat-photo-default.jpg"
+            alt="Default product cat"
+            className="product-image"
+            width="100%"
+            height="100%"
+          />
+        )}
+        {discountValue && discountType && (
+          <StyledDiscountBadge
+            discountValue={discountValue}
+            discountType={discountType}
+          />
+        )}
+
         <h3>{name}</h3>
         <p>Price {price}</p>
         <p data-testid="product-description">{description}</p>
         <StyledButton>Add to Cart</StyledButton>
-        </StyledCard>
+      </StyledCard>
     </StyledMain>
   );
 };

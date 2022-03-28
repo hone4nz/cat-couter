@@ -6,17 +6,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const StyledPaginationContainer = styled.div`
-display: flex;
-align-items: center;
-margin:unset;
-padding:unset;
-justify-content: center;
-@media only screen and (min-width: 672px) {
-  margin-left: 25%;
-  margin-right: 20%;
-  padding-left: 5%;
-  padding-right: 15%;
-}
+  display: flex;
+  align-items: center;
+  margin: unset;
+  padding: unset;
+  justify-content: center;
+  @media only screen and (min-width: 672px) {
+    margin-left: 25%;
+    margin-right: 20%;
+    padding-left: 5%;
+    padding-right: 15%;
+  }
 `;
 
 const StyledPaginationControls = styled.div`
@@ -29,7 +29,7 @@ const StyledPaginationControls = styled.div`
   align-items: center;
 `;
 
-const PaginationControls = ({setCurrentPage, currentPage, totalPages }) => {
+const PaginationControls = ({ setCurrentPage, currentPage, totalPages }) => {
   const prevDisabled = currentPage > 1 ? false : true;
   const nextDisabled = currentPage < totalPages ? false : true;
   const onClickPrev = () => {
@@ -66,28 +66,33 @@ const PaginationControls = ({setCurrentPage, currentPage, totalPages }) => {
       </a>
     );
   }
- return (
+  return (
     <StyledPaginationContainer>
       <StyledPaginationControls>
         <div>
-          <button aria-label="Previous page" onClick={onClickPrev}>
+          <button
+            aria-label="Previous page"
+            onClick={onClickPrev}
+            disabled={prevDisabled}
+          >
             <FontAwesomeIcon icon={faChevronLeft} size="2x" />
           </button>
         </div>
         <span>
-        Page {currentPage} of {totalPages}
+          Page {currentPage} of {totalPages}
         </span>
         <div>
-          <button aria-label="Next page" onClick={onClickNext}>
+          <button
+            aria-label="Next page"
+            onClick={onClickNext}
+            disabled={nextDisabled}
+          >
             <FontAwesomeIcon icon={faChevronRight} size="2x" />
           </button>
         </div>
       </StyledPaginationControls>
     </StyledPaginationContainer>
   );
-
-
-
 };
 
 export default PaginationControls;
