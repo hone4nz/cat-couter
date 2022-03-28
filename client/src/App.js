@@ -18,7 +18,7 @@ const StyledApp = styled.div`
 const App = () => {
   return (
     <StyledApp>
-      <Header />
+    <Header />
       <Routes>
       <Route exact path="/dashboard" element={<ProtectedRoute />}>
           <Route exact path="/dashboard" element={<DashboardPage />} />
