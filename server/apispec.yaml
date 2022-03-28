@@ -3,6 +3,9 @@ info:
   version: "1.0"
   title: Welcome to the Products API!
   description: This API allows user to handle products
+  contact:
+    name: "honey malhotra"
+    email: honeymalhotra@decelopersinstitute.co.nz
 servers:
   - url: "http://localhost:5001/api"
     description: Development server
@@ -23,7 +26,7 @@ paths:
           description: The number of products to return
           required: false
       responses:
-        200:
+        "200":
           description: OK
           content:
             application/json:
@@ -48,13 +51,13 @@ paths:
                   - totalPages
                   - itemsPerPage
                   - totalItems
-        400:
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        500:
+        "500":
           description: Internal Server Error
           content:
             application/json:
@@ -70,7 +73,7 @@ paths:
       tags:
         - reports
       responses:
-        200:
+        "200":
           description: OK
           content:
             application/json:
@@ -106,21 +109,21 @@ paths:
                         - discountType
                         - totalProducts
 
-        401:
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 
-        403:
+        "403":
           description: Forbidden
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 
-        500:
+        "500":
           description: Internal Server Error
           content:
             application/json:
@@ -176,3 +179,4 @@ components:
           type: string
 tags:
   - name: products
+  - name: reports
