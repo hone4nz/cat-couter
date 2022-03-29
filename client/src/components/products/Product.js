@@ -17,8 +17,8 @@ const StyledDiscountBadge = styled(DiscountBadge)`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: red;
-  color: white;
+  background-color: #901d1d;
+  color: #ffffff;
 `;
 
 const StyledButton = styled.button`
