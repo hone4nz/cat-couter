@@ -4,9 +4,12 @@ import LoginButton from "./LoginButton";
 
 const StyledNav = styled.nav`
   .right-links {
+    padding-left: 20px;
+    padding-right: 20px;
     li {
       list-style-type: none;
-      padding: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
       text-decoration: none;
       display: grid;
       text-align: center;
@@ -30,10 +33,6 @@ const StyledNav = styled.nav`
 
     .right-links {
       display: flex;
-
-      li {
-        list-style-type: none;
-      }
     }
   }
 `;
