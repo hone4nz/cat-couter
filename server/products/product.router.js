@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 const express = require("express");
 const Joi = require("joi");
 const router = express.Router();
@@ -15,8 +16,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { limit, page } = req.query;
-      const safeLimit = Boolean(limit) ? parseInt(limit) : 10;
-      const safePage = Boolean(parseInt(page)) ? parseInt(page) : 1;
+      const safeLimit = limit ? parseInt(limit) : 10;
+      const safePage = page ? parseInt(page) : 1;
       const allProducts = await productRepository.getTotalProducts();
       const products = await productRepository.getProducts(safeLimit, safePage);
 
