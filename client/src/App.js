@@ -7,12 +7,8 @@ import NotFoundPage from "./components/NotFoundPage";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 const StyledApp = styled.div`
-  display: flex;
+  display: grid;
   height: 100vh;
-  flex-direction: column;
-  & > * {
-    flex-shrink: 0;
-  }
 `;
 
 const App = () => {

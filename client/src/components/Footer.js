@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   align-self: flex-end;
   background-color: #eeeeee;
   display: flex;
-  position: relative;
+  position: relastic;
 
   .footer-item {
     padding-top: 1rem;

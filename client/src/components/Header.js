@@ -68,12 +68,15 @@ const StyledLink = styled(NavLink)`
 const StyledHeader = styled.header`
   display: flex;
   width: 100%;
+  height: 80px;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 3%;
+  margin-bottom: 0rem;
 
   .logo {
     font-size: 3rem;
-    margin: 2rem 0rem;
+    margin: unset;
+    padding: unset;
   }
 `;
 

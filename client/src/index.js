@@ -13,15 +13,17 @@ const GlobalStyle = createGlobalStyle`
 }
 .main-content {
  display:block-flex;
+ 
 }
 .main-layout > * {  
-  max-width:1344px;
+  height:min-content;
   position:relative;
-  padding:10%;
+  padding:2% 10% 5% 10%;
 }
 .narrow-layout > * {
   max-width:627px;
   position:relative;
+  padding:5% 10% 5% 10%;
 }
 
 .page-padding {
@@ -39,11 +41,6 @@ const GlobalStyle = createGlobalStyle`
     grid-template-columns: auto auto auto auto;
     grid-gap:10px 10px;
   }
-  .main-layout > *{   
-    margin-left:auto;
-    margin-right:auto;
-  } 
-  
 }
 `;
 
