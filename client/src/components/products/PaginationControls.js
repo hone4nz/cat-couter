@@ -11,6 +11,7 @@ const StyledPaginationContainer = styled.div`
   margin: unset;
   padding: unset;
   justify-content: center;
+
   @media only screen and (min-width: 672px) {
     margin-left: 25%;
     margin-right: 20%;
@@ -20,7 +21,6 @@ const StyledPaginationContainer = styled.div`
 `;
 
 const StyledPaginationControls = styled.div`
-  width: 100%;
   max-width: 200px;
   padding-top: 3rem;
   padding-bottom: 3rem;
